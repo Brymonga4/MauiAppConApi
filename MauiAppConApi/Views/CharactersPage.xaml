@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppConApi.Views.CharactersPage"
+             xmlns:controls="clr-namespace:MauiAppConApi.Controls"
+             xmlns:converters="clr-namespace:MauiAppConApi.Converters"
+             Title="Characters">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:StatusToBorderColorConverter x:Key="StatusToBorderColor"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ScrollView >
+        <Grid RowDefinitions="*, Auto">
+            <FlexLayout Grid.Row="0"
+                    Direction="Row"
+                    Wrap="Wrap"
+                    JustifyContent="SpaceEvenly"
+                    AlignItems="Start"
+                    BindableLayout.ItemsSource="{Binding Characters}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <controls:CardView 
+                                   BorderColor="{Binding Status, Converter={StaticResource StatusToBorderColor}}"
+                                   CardTitle="{Binding Name}"
+                                   Species="{Binding Species}"
+                                   Status="{Binding Status}"
+                                   CardDescription="{Binding Location.Name}"
+                                   IconBackgroundColor="SlateGray"
+                                   IconImageSource="{Binding Image}"
+                                   ImageTappedCommand="{Binding MyNavigationCommand}" 
+                                           />
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+            <Button Grid.Row="1"
+                Command="{Binding LoadNextPageCommand}"    
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Text="Load More"
+                    Margin="25"
+                />
+        </Grid>
+    </ScrollView>
+</ContentPage>

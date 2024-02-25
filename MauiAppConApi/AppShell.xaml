@@ -4,12 +4,57 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MauiAppConApi"
-    Shell.FlyoutBehavior="Disabled"
-    Title="MauiAppConApi">
+    xmlns:views="clr-namespace:MauiAppConApi.Views"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:HomePage}"
-        Route="HomePage" />
+    FlyoutBackground="{StaticResource Primary}"
+    Shell.FlyoutBehavior="Locked"
+    FlyoutHeaderBehavior="Fixed"
+    FlyoutWidth="300"
+    Title="Api Rick and Morty">
+
+    <Shell.FlyoutHeader>
+        <Grid BackgroundColor="Black"
+                  HeightRequest="180">
+            <Image Aspect="Fill"
+                       Source="mr_meeseeks.png"
+                       Opacity="0.6" />
+            <Image Aspect="Fill"
+                       Source="rick_and_morty.png"
+                       Opacity="1" />
+
+        </Grid>
+    </Shell.FlyoutHeader>
+    <ShellContent   Title="Characters"
+                    Route="characters"                 
+                    Icon="mr_meeseeks.png"
+                    ContentTemplate="{DataTemplate views:CharactersPage}"/>
+    
+    <ShellContent   Title="Locations"
+                    Icon="locations.png"
+                    Route="locations"  
+                    ContentTemplate="{DataTemplate views:LocationsPage}" />
+    
+    <ShellContent   Title="Wanted"
+                    Icon="token.png"
+                    ContentTemplate="{DataTemplate views:HomePage}" />
+    
+
+
+    <MenuItem Text="Help"
+              IconImageSource="help.png"
+            />
+
+    <Shell.FlyoutFooter>
+        <StackLayout>
+            <Label Text="Earth"
+               TextColor="{StaticResource Rick}"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+            <Label Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:MMMM dd, yyyy}'}"
+               TextColor="{StaticResource Rick}"
+               HorizontalOptions="Center" />
+        </StackLayout>
+    </Shell.FlyoutFooter>
 
 </Shell>

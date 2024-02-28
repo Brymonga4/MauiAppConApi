@@ -1,5 +1,4 @@
 ﻿using MauiAppConApi.Data;
-using MauiAppConApi.Repositories;
 using MauiAppConApi.Services;
 using MauiAppConApi.ViewModels;
 using MauiAppConApi.Views;

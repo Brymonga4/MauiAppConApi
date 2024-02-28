@@ -20,11 +20,12 @@
                    IsEnabled="True">
 
             </Image>
-            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1"
                    Text="{Binding LocationTitle, FallbackValue='Card Title'}"
                    FontAttributes="Bold"
                    HorizontalOptions="Center"
-                   VerticalOptions="Start"/>
+                   VerticalOptions="Start"
+                   />
 
             <BoxView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                      BackgroundColor="{Binding BorderColor, FallbackValue='Black'}"

@@ -35,5 +35,17 @@ public static class ModelExtensions
             );
     }
 
+    public static LocationAndResidentsDto AsDto(this LocationDto location, List<CharacterDto> residents)
+    {
+
+        return new LocationAndResidentsDto(
+            location.Id,
+            location.Name,
+            location.Type,
+            location.Dimension,
+            residents
+            );
+    }
+
 
 }

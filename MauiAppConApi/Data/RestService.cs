@@ -2,6 +2,7 @@
 
 using MauiAppConApi.Dtos;
 using MauiAppConApi.Models;
+using System.Diagnostics;
 using System.Text.Json;
 
 namespace MauiAppConApi.Data;
@@ -28,19 +29,21 @@ public class RestService
 
     }
 
-    public async Task <Character> GetCharacterRandom()
+    public async Task<Character> GetCharacterRandom()
     {
         var rand = new Random();
         int randId = rand.Next(1, 827);
 
         using (client = new HttpClient())
         {
-            request = new HttpRequestMessage 
-            { 
+            request = new HttpRequestMessage
+            {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri("https://rickandmortyapi.com/api/character/2"),
+                RequestUri = new Uri($"https://rickandmortyapi.com/api/character/{randId}"),
+
             };
-            using(response = await client.SendAsync(request))
+            
+            using (response = await client.SendAsync(request))
             {
                 response.EnsureSuccessStatusCode();
                 var body = await response.Content.ReadAsStringAsync();
@@ -54,13 +57,34 @@ public class RestService
     }
     public async Task<Character> GetCharacterById(int id)
     {
+            using (client = new HttpClient())
+            {
+                request = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Get,
+                    RequestUri = new Uri($"https://rickandmortyapi.com/api/character/{id}"),
+                };
+                using (response = await client.SendAsync(request))
+                {
+                    response.EnsureSuccessStatusCode();
+                    var body = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine(body);
 
+                    Item = JsonSerializer.Deserialize<Character>(body, serializerOptions);
+                    return Item;
+                }
+            }
+ 
+    }
+
+    public async Task<Character> GetCharacterByUri(Uri uri)
+    {
         using (client = new HttpClient())
         {
             request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri("https://rickandmortyapi.com/api/character/{id}"),
+                RequestUri = uri,
             };
             using (response = await client.SendAsync(request))
             {
@@ -70,10 +94,11 @@ public class RestService
 
                 Item = JsonSerializer.Deserialize<Character>(body, serializerOptions);
                 return Item;
-
             }
         }
+
     }
+
     public async Task<List<Character>> GetCharacters()
     {
 
@@ -236,6 +261,33 @@ public class RestService
                 var locationResults = JsonSerializer.Deserialize<LocationResults>(body, serializerOptions);
 
                 return locationResults;
+            }
+        }
+    }
+
+    public async Task<LocationComplete> GetLocationRandom()
+    {
+        var rand = new Random();
+        int randId = rand.Next(1, 127);
+
+        using (client = new HttpClient())
+        {
+            request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri($"https://rickandmortyapi.com/api/location/{randId}"),
+
+            };
+
+            using (response = await client.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+                var body = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(body);
+
+                ItemLocatationComplete = JsonSerializer.Deserialize<LocationComplete>(body, serializerOptions);
+                return ItemLocatationComplete;
+
             }
         }
     }

@@ -5,7 +5,7 @@
              xmlns:controls="clr-namespace:MauiAppConApi.Controls"
              Title="Locations">
     <ScrollView>
-        <Grid RowDefinitions="*, Auto">
+        <Grid RowDefinitions="*, Auto, Auto">
             <FlexLayout Grid.Row="0"
                 Direction="Row"
                 Wrap="Wrap"
@@ -31,6 +31,13 @@
             Text="Load More"
                 Margin="25"
             />
+            <Button Grid.Row="2"  
+                Command="{Binding GoToCommand}" 
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Text="GOTO"
+                    Margin="25"
+                />
         </Grid>
     </ScrollView>
 </ContentPage>

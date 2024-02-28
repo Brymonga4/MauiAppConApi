@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Windows.Input;
 
 namespace MauiAppConApi.Controls;
@@ -82,7 +83,7 @@ public partial class CardView : ContentView
     private void OnImageTapped(object sender, EventArgs e)
     {
         // Aquí puedes invocar un comando o un evento que esté vinculado a tu ViewModel
-        Console.WriteLine("hola");
+        Trace.WriteLine("hola");
         ImageTappedCommand?.Execute(null);
     }
     public CardView()

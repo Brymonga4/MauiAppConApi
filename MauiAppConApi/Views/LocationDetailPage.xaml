@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiAppConApi.Views.CharactersPage"
+             x:Class="MauiAppConApi.Views.LocationDetailPage"
              xmlns:controls="clr-namespace:MauiAppConApi.Controls"
-             xmlns:converters="clr-namespace:MauiAppConApi.Converters"
-             Title="Characters">
+             xmlns:converters="clr-namespace:MauiAppConApi.Converters"           
+             Title="LocationDetailPage">
+
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -13,13 +14,27 @@
     </ContentPage.Resources>
     
     <ScrollView >
-        <Grid RowDefinitions="*, Auto, Auto">
-            <FlexLayout Grid.Row="0"
+        <Grid RowDefinitions="*, *">
+
+            <controls:FullDetailLocationCardView Grid.Row="0"
+                                                  
+                                   IconImageSource="portal_to_location.png"                                                 
+                                   CardTitle="{Binding LocationWithResidents.Name}"            
+                                   Species="Type:"
+                                   Status="{Binding LocationWithResidents.Type}"                                         
+                                   Gender="{Binding LocationWithResidents.Dimension}"               
+                                                  
+                                   Origin="Origin Value"
+                                                  
+                                   CardDescription="We could use this for residents"
+
+                                           />
+            <FlexLayout Grid.Row="1" 
                     Direction="Row"
                     Wrap="Wrap"
                     JustifyContent="SpaceEvenly"
                     AlignItems="Start"
-                    BindableLayout.ItemsSource="{Binding Characters}">
+                    BindableLayout.ItemsSource="{Binding LocationWithResidents.Residents}">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <controls:CardView 
@@ -28,27 +43,11 @@
                                    Species="{Binding Species}"
                                    Status="{Binding Status}"
                                    CardDescription="{Binding Location.Name}"
-                                   IconBackgroundColor="SlateGray"
-                                   IconImageSource="{Binding Image}"
-                                   ImageTappedCommand="{Binding MyNavigationCommand}" 
+                                   IconImageSource="{Binding Image}" 
                                            />
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
             </FlexLayout>
-            <Button Grid.Row="1"
-                Command="{Binding LoadNextPageCommand}"    
-                HorizontalOptions="CenterAndExpand"
-                VerticalOptions="CenterAndExpand"
-                Text="Load More"
-                    Margin="25"
-                />
-            <Button Grid.Row="2"  
-                Command="{Binding GoToCommand}" 
-                HorizontalOptions="CenterAndExpand"
-                VerticalOptions="CenterAndExpand"
-                Text="GOTO"
-                    Margin="25"
-                />
         </Grid>
     </ScrollView>
 </ContentPage>

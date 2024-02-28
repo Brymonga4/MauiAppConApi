@@ -4,6 +4,7 @@ using MauiAppConApi.Dtos;
 using MauiAppConApi.Models;
 using MauiAppConApi.Services;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 
 namespace MauiAppConApi.ViewModels
@@ -49,6 +50,17 @@ namespace MauiAppConApi.ViewModels
         private async Task LoadNextPage()
         {
             LoadLocations(NextPageUri);
+        }
+
+        [RelayCommand]
+        private async Task GoTo()
+        {
+            var num = 2;
+            Trace.WriteLine("mando location2 " + num);
+            await Shell.Current.GoToAsync("locationdetail", new ShellNavigationQueryParameters { { "ideal", num } });
+            //await Shell.Current.GoToAsync($"characterdetail?id={num}");
+
+
         }
 
     }

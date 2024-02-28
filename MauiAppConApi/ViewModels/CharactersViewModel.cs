@@ -4,7 +4,9 @@ using CommunityToolkit.Mvvm.Input;
 using MauiAppConApi.Dtos;
 using MauiAppConApi.Models;
 using MauiAppConApi.Services;
+using MauiAppConApi.Views;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Windows.Input;
 
 namespace MauiAppConApi.ViewModels;
@@ -73,11 +75,18 @@ public partial class CharactersViewModel : ObservableObject
     {
         // Lógica para navegar a otra vista
         // Puedes usar Shell.Current.GoToAsync("tuRuta") para navegar
-        Console.WriteLine("hola viewmodel");
-       
+        Trace.WriteLine("hola viewmodel");
     }
 
+    [RelayCommand]
+    private async Task GoTo()
+    {
+        var num = 2;
+        Trace.WriteLine("Mando el numero "+ num);
+        await Shell.Current.GoToAsync("characterdetail", new ShellNavigationQueryParameters { { "Id", num } });
+        //await Shell.Current.GoToAsync($"characterdetail?id={num}");
 
 
+    }
 
 }

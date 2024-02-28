@@ -22,7 +22,7 @@ namespace MauiAppConApi
 
 #if DEBUG
     		builder.Logging.AddDebug();
-            builder.Services.AddSingleton<DummyService>();;
+            builder.Services.AddSingleton<DummyService>();
 
             builder.Services.AddSingleton<HomeViewModel>();
             builder.Services.AddSingleton<HomePage>();
@@ -31,9 +31,17 @@ namespace MauiAppConApi
             builder.Services.AddSingleton<CharactersViewModel>();
             builder.Services.AddSingleton<CharactersPage>();
 
+            builder.Services.AddSingleton<CharacterDetailViewModel>();
+            builder.Services.AddSingleton<CharacterDetailPage>();
+
+            builder.Services.AddSingleton<LocationDetailViewModel>();
+            builder.Services.AddSingleton<LocationDetailPage>();
+
             builder.Services.AddSingleton<LocationsService>();
             builder.Services.AddSingleton<LocationsViewModel>();
             builder.Services.AddSingleton<LocationsPage>();
+
+            
 
             builder.Services.AddSingleton<AboutViewModel>();
             builder.Services.AddSingleton<AboutPage>();

@@ -43,7 +43,7 @@
                    HorizontalOptions="Start"
                    VerticalOptions="Start"
                    HorizontalTextAlignment="Start"
-                   LineBreakMode="WordWrap"/>
+                   LineBreakMode="CharacterWrap"/>
             <Label Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"
                    Text="{Binding Status, FallbackValue='Status'}"
                    FontSize="Body"

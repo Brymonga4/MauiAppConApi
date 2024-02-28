@@ -13,7 +13,11 @@ namespace MauiAppConApi.Dtos
         Origin Origin,
         Models.Location Location,
         string Image
-        );
+        )
+    {
+  
+    }
+
     public record LocationDto(
         int Id,
         string Name,
@@ -21,6 +25,16 @@ namespace MauiAppConApi.Dtos
         string Dimension,
         List<string> Residents
         );
+
+    public record LocationAndResidentsDto(
+    int Id,
+    string Name,
+    string Type,
+    string Dimension,
+    List<CharacterDto> Residents
+    );
+
+
 
     public record CharacterAndInfoDto(
     int Id,

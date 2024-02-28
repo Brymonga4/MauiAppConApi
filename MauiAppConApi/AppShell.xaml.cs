@@ -15,6 +15,8 @@ namespace MauiAppConApi
         {
             Routing.RegisterRoute("home/characters", typeof(CharactersPage));
             Routing.RegisterRoute("home/locations", typeof (LocationsPage));
+            Routing.RegisterRoute("characterdetail", typeof(CharacterDetailPage));
+            Routing.RegisterRoute("locationdetail", typeof(LocationDetailPage));
         }
     }
 }

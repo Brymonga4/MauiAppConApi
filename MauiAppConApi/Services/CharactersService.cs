@@ -28,4 +28,10 @@ public partial class CharactersService(RestService restService) : IServices<Char
         return charactersResults;
 
     }
+    public async Task<CharacterDto> GetRandomCharacter()
+    {
+        var character = await restService.GetCharacterRandom();
+        return character.AsDto();
+    }
+
 }

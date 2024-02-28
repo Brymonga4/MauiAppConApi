@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppConApi.Views.CharacterDetailPage"
+             xmlns:controls="clr-namespace:MauiAppConApi.Controls"
+             Title="CharacterDetailPage">
+
+    <ScrollView >
+        <Grid RowDefinitions="*, Auto">
+
+            <controls:FullDetailCharacterCardView Grid.Row="0"
+                                                  
+                                   IconImageSource="{Binding Character.Image}"                                                 
+                                   CardTitle="{Binding Character.Name}"
+                                                  
+                                   Species="{Binding Character.Species}"
+                                   Status="{Binding Character.Status}"
+                                                  
+                                   Gender="{Binding Character.Gender}"               
+                                                  
+                                   Origin="{Binding Character.Origin.Name}"
+                                                  
+                                   CardDescription="{Binding Character.Location.Name}"
+
+                                           />
+        </Grid>
+    </ScrollView>
+</ContentPage>

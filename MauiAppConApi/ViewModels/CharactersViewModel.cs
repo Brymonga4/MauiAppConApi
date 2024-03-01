@@ -59,17 +59,6 @@ public partial class CharactersViewModel : ObservableObject
         LoadCharactersWithNextPage(NextPageUri);
     }
 
-
-    [RelayCommand]
-    private async Task GoTo()
-    {
-        var num = 2;
-        Trace.WriteLine("Mando el numero "+ num);
-        //await Shell.Current.GoToAsync("characterdetail", new ShellNavigationQueryParameters { { "Id", num } });
-        await Shell.Current.GoToAsync($"characterdetail?id={num}");
-
-    }
-
     [RelayCommand]
     private async Task GoToCharacterDetail(int id)
     {

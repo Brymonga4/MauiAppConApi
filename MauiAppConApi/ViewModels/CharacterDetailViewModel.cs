@@ -36,11 +36,6 @@ public partial class CharacterDetailViewModel : ObservableObject
 
     }
 
-    public async Task LoadRandomCharacter()
-    {
-        var character = await charactersService.GetRandomCharacter();
-        Character = character;
 
-    }
 
 }

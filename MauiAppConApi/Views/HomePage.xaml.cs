@@ -10,6 +10,7 @@ namespace MauiAppConApi.Views
             BindingContext = homeViewModel;
 
 
+
             int anchoElemento = 250 + 20; // Cambia el 250 al WidthRequest de tu Frame y 20 al espacio total (margen)
 
             SizeChanged += (sender, args) =>

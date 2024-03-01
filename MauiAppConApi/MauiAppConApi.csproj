@@ -64,6 +64,7 @@
 	  <None Remove="Resources\Images\rick_and_mortimer.jpg" />
 	  <None Remove="Resources\Images\rick_and_morty.svg" />
 	  <None Remove="Resources\Images\Settings.png" />
+	  <None Remove="Resources\Images\Squanchy.png" />
 	  <None Remove="Resources\Images\teleport.png" />
 	  <None Remove="Resources\Images\token.png" />
 	</ItemGroup>
@@ -107,6 +108,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\LocationsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\RandomPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

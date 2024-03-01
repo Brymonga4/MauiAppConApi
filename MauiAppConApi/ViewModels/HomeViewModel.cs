@@ -17,17 +17,26 @@ public partial class HomeViewModel : ObservableObject
     [ObservableProperty]
     private Uri nextPageUri;
     [ObservableProperty]
-    private CharacterDto ?selectedCharacter;
+    private CharacterDto? selectedCharacter;
+
+    [ObservableProperty]
+    private ObservableCollection<CharacterDto> filteredCharacters;
+
+    [ObservableProperty]
+    private string searchText;
 
     private readonly CharactersService charactersService;
 
     public HomeViewModel(CharactersService characterService)
     {
         this.charactersService = characterService;
-        Characters = new ObservableCollection<CharacterDto>();
 
+        //Characters = new ObservableCollection<CharacterDto>();
+        FilteredCharacters = new ObservableCollection<CharacterDto>();
         nextPageUri = new Uri("https://rickandmortyapi.com/api/character?status=dead");
         LoadCharactersDead(NextPageUri);
+
+        // FilteredCharacters = new ObservableCollection<CharacterDto>(Characters);
     }
 
 
@@ -36,18 +45,12 @@ public partial class HomeViewModel : ObservableObject
         if (NextPageUri != null)
         {
             var charactersResults = await charactersService.GetCharactersWithPage(uri);
+            var tempCharacters = new ObservableCollection<CharacterDto>();
             foreach (var character in charactersResults.Results)
             {
-                Characters.Add(character.AsDto());
+                tempCharacters.Add(character.AsDto());
             }
-            if (charactersResults.Info.Next != null)
-            {
-                NextPageUri = new Uri(charactersResults.Info.Next);
-            }
-            else
-            {
-                NextPageUri = null;
-            };
+            FilteredCharacters = tempCharacters;
         }
 
     }
@@ -56,7 +59,7 @@ public partial class HomeViewModel : ObservableObject
     [RelayCommand]
     private async Task LoadNextPage()
     {
-       await LoadCharactersDead(NextPageUri);
+        await LoadCharactersDead(NextPageUri);
     }
 
     [RelayCommand]
@@ -65,6 +68,21 @@ public partial class HomeViewModel : ObservableObject
         // Navegación a rutas absolutas
         await Shell.Current.GoToAsync("//about");
     }
+
+    [RelayCommand]
+    public async Task FilterCharacters(string searchText)
+    {
+        if (string.IsNullOrWhiteSpace(searchText))
+        {
+            await LoadCharactersDead(NextPageUri);
+        }
+        else
+        {
+            var filtered = FilteredCharacters.Where(c => c.Name.ToLower().Contains(searchText.ToLower()));
+            FilteredCharacters = new ObservableCollection<CharacterDto>(filtered);
+        }
+    }
+
 
     [RelayCommand]
     private async Task ShowDetail()
@@ -82,5 +100,10 @@ public partial class HomeViewModel : ObservableObject
         //await Shell.Current.GoToAsync("details", new ShellNavigationQueryParameters { { "Cosa", SelectedCosa } });
         Trace.WriteLine(SelectedCharacter.Id);
         await Shell.Current.GoToAsync($"characterdetail?id={SelectedCharacter.Id}");
+    }
+
+    partial void OnSearchTextChanged(string value)
+    {
+        FilterCharacters(value); 
     }
 }

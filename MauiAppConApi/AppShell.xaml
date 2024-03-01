@@ -25,7 +25,12 @@
 
         </Grid>
     </Shell.FlyoutHeader>
-
+    
+    <ShellContent   Title="Randomizer"
+                    Icon="squanchy.png"
+                    Route="random"  
+                    ContentTemplate="{DataTemplate views:RandomPage}" />
+    
     <ShellContent   Title="Memorial"
                     Icon="token.png"
                     ContentTemplate="{DataTemplate views:HomePage}" />

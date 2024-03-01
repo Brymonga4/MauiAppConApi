@@ -21,31 +21,41 @@ namespace MauiAppConApi
 
 #if DEBUG
     		builder.Logging.AddDebug();
-            builder.Services.AddSingleton<DummyService>();
 
-            builder.Services.AddSingleton<HomeViewModel>();
-            builder.Services.AddSingleton<HomePage>();
+            //Services
+            builder.Services.AddSingleton<RestService>();
 
             builder.Services.AddSingleton<CharactersService>();
-            builder.Services.AddSingleton<CharactersViewModel>();
-            builder.Services.AddSingleton<CharactersPage>();
-
-            builder.Services.AddSingleton<CharacterDetailViewModel>();
-            builder.Services.AddSingleton<CharacterDetailPage>();
-
-            builder.Services.AddSingleton<LocationDetailViewModel>();
-            builder.Services.AddSingleton<LocationDetailPage>();
-
             builder.Services.AddSingleton<LocationsService>();
-            builder.Services.AddSingleton<LocationsViewModel>();
-            builder.Services.AddSingleton<LocationsPage>();
+
+            //Home page and viewmodel
+            builder.Services.AddTransient<HomeViewModel>();
+            builder.Services.AddTransient<HomePage>();
+
+            //Random page and viewmodel
+            builder.Services.AddTransient<RandomViewModel>();
+            builder.Services.AddTransient<RandomPage>();
+
+            //Character page and viewmodel
+            builder.Services.AddTransient<CharactersViewModel>();
+            builder.Services.AddTransient<CharactersPage>();
+
+            builder.Services.AddTransient<CharacterDetailViewModel>();
+            builder.Services.AddTransient<CharacterDetailPage>();
+
+            //Location page and viewmodel
+            builder.Services.AddTransient<LocationDetailViewModel>();
+            builder.Services.AddTransient<LocationDetailPage>();
+
+            builder.Services.AddTransient<LocationsViewModel>();
+            builder.Services.AddTransient<LocationsPage>();
 
             
+            //About page and viewmodel
+            builder.Services.AddTransient<AboutViewModel>();
+            builder.Services.AddTransient<AboutPage>();
 
-            builder.Services.AddSingleton<AboutViewModel>();
-            builder.Services.AddSingleton<AboutPage>();
 
-            builder.Services.AddSingleton<RestService>();
 #endif
 
             return builder.Build();

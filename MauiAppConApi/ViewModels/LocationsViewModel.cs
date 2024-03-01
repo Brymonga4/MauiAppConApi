@@ -53,16 +53,6 @@ namespace MauiAppConApi.ViewModels
         }
 
         [RelayCommand]
-        private async Task GoTo()
-        {
-            var num = 2;
-            Trace.WriteLine("mando location2 " + num);
-            await Shell.Current.GoToAsync("locationdetail", new ShellNavigationQueryParameters { { "ideal", num } });
-            //await Shell.Current.GoToAsync($"characterdetail?id={num}");
-
-        }
-
-        [RelayCommand]
         private async Task GoToLocationDetail(int id)
         {
             Trace.WriteLine("Leo del control " + id);

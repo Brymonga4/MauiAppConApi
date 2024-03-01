@@ -46,13 +46,6 @@
                 Text="Load More"
                     Margin="25"
                 />
-            <Button Grid.Row="2"  
-                Command="{Binding GoToCommand}" 
-                HorizontalOptions="CenterAndExpand"
-                VerticalOptions="CenterAndExpand"
-                Text="GOTO"
-                    Margin="25"
-                />
         </Grid>
     </ScrollView>
 </ContentPage>

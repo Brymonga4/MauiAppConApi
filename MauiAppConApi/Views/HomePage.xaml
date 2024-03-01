@@ -7,17 +7,23 @@
 
 
 
-    <Grid RowDefinitions="Auto,*, Auto">
-        <Label Grid.Row="0" 
+    <Grid RowDefinitions="Auto,Auto, *">
+        
+        <SearchBar Grid.Row="0"
+           Placeholder="Search characters..."
+                   Text="{Binding SearchText, Mode=TwoWay}"/>
+        
+        <Label Grid.Row="1" 
                Text="Missed but never forgotten"
                FontSize="Header"
                HorizontalOptions="Center"
                Margin="10"/>
 
-        <CollectionView Grid.Row ="1"
+        
+        <CollectionView Grid.Row ="2"
                     x:Name="MyCollectionView"
                                 
-                     ItemsSource="{Binding Characters}"
+                     ItemsSource="{Binding FilteredCharacters}"
                      SelectedItem="{Binding SelectedCharacter}"
                      SelectionChangedCommand="{Binding ShowDetailCommand}"
                      SelectionChangedCommandParameter="{Binding SelectedItem, 

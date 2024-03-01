@@ -10,20 +10,14 @@
            IsEnabled="True"
            HeightRequest="280"
            WidthRequest="200">
-        <Frame.GestureRecognizers>
-            <TapGestureRecognizer Tapped="OnImageTapped"/>
-        </Frame.GestureRecognizers>
         <Grid RowDefinitions="Auto, Auto, Auto, Auto, *, Auto"
-              ColumnDefinitions="Auto, Auto, *">
+              ColumnDefinitions="*, *, Auto">
             <Image x:Name="Image"  Grid.Row="0" Grid.ColumnSpan="3"              
                     Source="{Binding IconImageSource, FallbackValue='settings.png'}"
                     HeightRequest="120"
                     WidthRequest="120"
                    Aspect="Fill" 
                    IsEnabled="True">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnImageTapped"/>
-                </Image.GestureRecognizers>
             </Image>
             <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
                    Text="{Binding CardTitle, FallbackValue='Card Title'}"
@@ -43,8 +37,9 @@
                    HorizontalOptions="Start"
                    VerticalOptions="Start"
                    HorizontalTextAlignment="Start"
-                   LineBreakMode="CharacterWrap"/>
-            <Label Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"
+                   LineBreakMode="WordWrap"
+                   />
+            <Label Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1"
                    Text="{Binding Status, FallbackValue='Status'}"
                    FontSize="Body"
                    HorizontalOptions="End"

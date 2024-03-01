@@ -15,7 +15,8 @@ public partial class CharacterDetailPage : ContentPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        await this.characterDetailViewModel.LoadRandomCharacter();
+       // await this.characterDetailViewModel.LoadRandomCharacter();
+       await this.characterDetailViewModel.LoadCharacterById();
     }
 
 }

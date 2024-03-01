@@ -5,21 +5,23 @@
              xmlns:controls="clr-namespace:MauiAppConApi.Controls"
              Title="AboutPage">
     <ScrollView>
-        <FlexLayout Direction="Row"
-            Wrap="Wrap"
-            JustifyContent="SpaceBetween"
-            AlignItems="Start"
-            BindableLayout.ItemsSource="{Binding Cosas}">
-            <BindableLayout.ItemTemplate>
-                <DataTemplate>
-                    <controls:CardView BorderColor="{StaticResource Rick}"
-                           CardTitle="The pleasure of"
-                           CardDescription="{Binding Name}"
-                            IconBackgroundColor="SlateGray"
-                            IconImageSource="mr_meeseeks.png"
-                                   />
-                </DataTemplate>
-            </BindableLayout.ItemTemplate>
-        </FlexLayout>
+        <Grid ColumnDefinitions="Auto, *, Auto"
+              RowDefinitions="Auto, Auto, Auto">
+
+            <Label Grid.Column="1" 
+                   Text="RICK AND MORTY"
+                   FontSize="Header"
+                   HorizontalTextAlignment="Center"/>
+
+            <Image Grid.Row="1" Grid.Column="1" 
+                   Source="rick_and_mortimer.jpg"/>
+
+            <Label  Grid.Row="2" Grid.Column="1" 
+                    HorizontalTextAlignment="Center"
+                    LineBreakMode="WordWrap"
+                    FontSize="25"
+                    Text="The fractured domestic lives of a nihilistic mad scientist and his anxious grandson are further complicated by their inter-dimensional misadventures."/>
+
+        </Grid>
     </ScrollView>
 </ContentPage>

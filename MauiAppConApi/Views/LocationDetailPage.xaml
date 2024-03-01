@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppConApi.Views.LocationDetailPage"
              xmlns:controls="clr-namespace:MauiAppConApi.Controls"
-             xmlns:converters="clr-namespace:MauiAppConApi.Converters"           
-             Title="LocationDetailPage">
+             xmlns:converters="clr-namespace:MauiAppConApi.Converters"
+             x:Name="ThisPage"
+             Title="Location Full Detail">
 
 
     <ContentPage.Resources>
@@ -38,12 +39,17 @@
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <controls:CardView 
+                                   CharacterId="{Binding Id}"
+                            
                                    BorderColor="{Binding Status, Converter={StaticResource StatusToBorderColor}}"
                                    CardTitle="{Binding Name}"
                                    Species="{Binding Species}"
                                    Status="{Binding Status}"
                                    CardDescription="{Binding Location.Name}"
                                    IconImageSource="{Binding Image}" 
+                            
+                                   ImageTappedCommand="{Binding Source={x:Reference ThisPage}, 
+                                   Path=BindingContext.GoToCharacterDetailCommand}"
                                            />
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>

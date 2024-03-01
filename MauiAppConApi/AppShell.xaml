@@ -25,6 +25,11 @@
 
         </Grid>
     </Shell.FlyoutHeader>
+
+    <ShellContent   Title="Memorial"
+                    Icon="token.png"
+                    ContentTemplate="{DataTemplate views:HomePage}" />
+
     <ShellContent   Title="Characters"
                     Route="characters"                 
                     Icon="mr_meeseeks.png"
@@ -35,14 +40,13 @@
                     Route="locations"  
                     ContentTemplate="{DataTemplate views:LocationsPage}" />
     
-    <ShellContent   Title="Wanted"
-                    Icon="token.png"
-                    ContentTemplate="{DataTemplate views:HomePage}" />
-    
 
 
-    <MenuItem Text="Help"
-              IconImageSource="help.png"
+
+
+    <ShellContent Title="Help"
+              Icon="help.png"
+              ContentTemplate="{DataTemplate views:AboutPage}"
             />
 
     <Shell.FlyoutFooter>

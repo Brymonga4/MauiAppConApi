@@ -48,9 +48,35 @@ public partial class LongCardView : ContentView
         set => SetValue(IconImageSourceProperty, value);
     }
 
+    public static readonly BindableProperty ImageTappedCommandProperty =
+    BindableProperty.Create(nameof(ImageTappedCommand), typeof(ICommand), typeof(LongCardView));
+
+    public ICommand ImageTappedCommand
+    {
+        get => (ICommand)GetValue(ImageTappedCommandProperty);
+        set => SetValue(ImageTappedCommandProperty, value);
+    }
+
+    public static readonly BindableProperty LocationIdProperty = 
+        BindableProperty.Create(nameof(LocationId), typeof(int), typeof(LongCardView), 0);
+
+    public int LocationId
+    {
+        get => (int)GetValue(LocationIdProperty);
+        set => SetValue(LocationIdProperty, value);
+    }
 
     public LongCardView()
 	{
 		InitializeComponent();
-	}
+
+        var tapGestureRecognizer = new TapGestureRecognizer();
+        tapGestureRecognizer.Tapped += (s, e) => {
+            if (ImageTappedCommand != null && ImageTappedCommand.CanExecute(LocationId))
+            {
+                ImageTappedCommand.Execute(LocationId);
+            }
+        };
+        Image.GestureRecognizers.Add(tapGestureRecognizer);
+    }
 }

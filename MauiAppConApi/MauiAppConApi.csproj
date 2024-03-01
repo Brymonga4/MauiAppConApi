@@ -59,9 +59,12 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\help.png" />
 	  <None Remove="Resources\Images\mr_meeseeks.png" />
+	  <None Remove="Resources\Images\poopybutthole.png" />
 	  <None Remove="Resources\Images\portal_to_location.png" />
+	  <None Remove="Resources\Images\rick_and_mortimer.jpg" />
 	  <None Remove="Resources\Images\rick_and_morty.svg" />
 	  <None Remove="Resources\Images\Settings.png" />
+	  <None Remove="Resources\Images\teleport.png" />
 	  <None Remove="Resources\Images\token.png" />
 	</ItemGroup>
 

@@ -2,18 +2,56 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppConApi.Views.HomePage"
-             Title="Hola hola">
+             Title="Memorial">
 
-    <ScrollView>
-        <VerticalStackLayout VerticalOptions="Center">
-            <CollectionView x:Name="MyCollectionView"
-                     ItemsSource="{Binding Cosas}"
-                     SelectedItem="{Binding SelectedCosa}"
+
+
+
+    <Grid RowDefinitions="Auto,*, Auto">
+        <Label Grid.Row="0" 
+               Text="Missed but never forgotten"
+               FontSize="Header"
+               HorizontalOptions="Center"
+               Margin="10"/>
+
+        <CollectionView Grid.Row ="1"
+                    x:Name="MyCollectionView"
+                                
+                     ItemsSource="{Binding Characters}"
+                     SelectedItem="{Binding SelectedCharacter}"
                      SelectionChangedCommand="{Binding ShowDetailCommand}"
-                     SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference MyCollectionView}}"
-                     SelectionMode="Single" />
-            <Button  Text="Navegar a ruta absoluta" />
-        </VerticalStackLayout>
-    </ScrollView>
+                     SelectionChangedCommandParameter="{Binding SelectedItem, 
+                            Source={x:Reference MyCollectionView}}"
+                     SelectionMode="Single" >
+                                    
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"  />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BorderColor="{StaticResource Tertiary}" 
+                                   Margin="10" 
+                                   Padding="5"
+                                   HeightRequest="300"
+                                   WidthRequest="250">
+                                <VerticalStackLayout>
+
+                                    <Image Source="{Binding Image}"
+                                       Aspect="AspectFill"
+                                       HeightRequest="200"
+                                       WidthRequest="200"/>
+
+                                    <Label Text="{Binding Name}"
+                                       FontSize="20"
+                                       HorizontalOptions="Center" />
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
+
+    </Grid>
 
 </ContentPage>

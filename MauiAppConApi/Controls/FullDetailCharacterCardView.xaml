@@ -11,7 +11,7 @@
            VerticalOptions="FillAndExpand"
            >
         <Grid RowDefinitions="Auto, Auto, *, Auto"
-              ColumnDefinitions="300, *, Auto">
+              ColumnDefinitions="300, *,*, Auto">
             
             <Image x:Name="Image"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"              
                     Source="{Binding IconImageSource, FallbackValue='settings.png'}"
@@ -21,18 +21,18 @@
                    HorizontalOptions="Start"
                    >
             </Image>
-            <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
+            <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" 
                   RowDefinitions="Auto, *, Auto"
-                  ColumnDefinitions="*, Auto, *">
-                
-                <Label Grid.Row="0" Grid.Column="1"
+                  ColumnDefinitions="Auto,*,*, Auto">
+
+                <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
                    Text="{Binding CardTitle, FallbackValue='Card Title'}"
                    FontAttributes="Bold"
                    FontSize="Header"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"/>
 
-                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1"
+                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
                    Text="{Binding Species, FallbackValue='Species'}"
                    Padding="10"
                    FontSize="Large"
@@ -41,7 +41,7 @@
                    HorizontalTextAlignment="Start"
                    LineBreakMode="CharacterWrap"/>
 
-                <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="1"
+                <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2"
                    Text="{Binding Status, FallbackValue='Status'}"
                    Padding="5"
                    FontSize="Large"
@@ -50,7 +50,7 @@
                    HorizontalTextAlignment="End"
                    LineBreakMode="WordWrap"/>
 
-                <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1"
+                <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                    Text="Gender:"
                    Padding="10"
                    FontSize="Large"
@@ -70,7 +70,7 @@
             </Grid>
             
             
-            <BoxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
+            <BoxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"
                      BackgroundColor="{StaticResource Rick}"
                      Margin="15"
                      HeightRequest="8"

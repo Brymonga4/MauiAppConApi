@@ -34,4 +34,17 @@ public partial class CharactersService(RestService restService) : IServices<Char
         return character.AsDto();
     }
 
+    public async Task<CharacterResults> GetCharactersDead()
+    {
+        var charactersResults = await restService.GetCharactersDead();
+        return charactersResults;
+
+    }
+
+    public async Task<CharacterResults> GetCharactersUnknown()
+    {
+        var charactersResults = await restService.GetCharactersUnknown();
+        return charactersResults;
+
+    }
 }

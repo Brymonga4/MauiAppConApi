@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace MauiAppConApi.ViewModels;
 
-[QueryProperty("Id", "Id")]
+[QueryProperty(nameof(Id), "id")]
 //[QueryProperty(nameof(CharacterDto), nameof(CharacterDto))]
 public partial class CharacterDetailViewModel : ObservableObject
 {
@@ -23,15 +23,15 @@ public partial class CharacterDetailViewModel : ObservableObject
     public CharacterDetailViewModel(CharactersService charactersService)
     {
         this.charactersService = charactersService;
-        Trace.WriteLine("Recibo el numero " + Id);
+        Trace.WriteLine("Recibo el numero al crear el viewmodel " + Id);
         //LoadCharacterById(Id);
-        LoadRandomCharacter();
+       // LoadRandomCharacter();
     }
 
-    private async Task LoadCharacterById(int id)
+    public async Task LoadCharacterById()
     {
-        Trace.WriteLine("Recibo el numero "+id);
-         var character =  await charactersService.GetById(id);
+        Trace.WriteLine("Recibo el numero en loadcharacter "+ Id);
+         var character =  await charactersService.GetById(Id);
         Character = character;
 
     }

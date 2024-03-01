@@ -38,7 +38,7 @@ public partial class LocationsService(RestService restService) : IServices<Locat
         var location = await restService.GetLocationRandom();
 
         List<CharacterDto> residents = new List<CharacterDto>();
-        Trace.WriteLine("resident that live in " + location.Name +" - " +location.Id);
+
         foreach(var resident in location.Residents)
         {
             var uri = new Uri(resident);
@@ -49,6 +49,27 @@ public partial class LocationsService(RestService restService) : IServices<Locat
 
         var locationandresidents = new LocationAndResidentsDto (location.Id,location.Name,
                                                                 location.Type,location.Dimension, 
+                                                                residents);
+
+        return locationandresidents;
+    }
+
+    public async Task<LocationAndResidentsDto> GetLocationWithResidentsById(int id)
+    {
+        var location = await restService.GetLocationById(id);
+
+        List<CharacterDto> residents = new List<CharacterDto>();
+
+        foreach (var resident in location.Residents)
+        {
+            var uri = new Uri(resident);
+            var residentCharacter = await restService.GetCharacterByUri(uri);
+            Trace.WriteLine(residentCharacter.Name);
+            residents.Add(residentCharacter.AsDto());
+        }
+
+        var locationandresidents = new LocationAndResidentsDto(location.Id, location.Name,
+                                                                location.Type, location.Dimension,
                                                                 residents);
 
         return locationandresidents;

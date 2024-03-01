@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppConApi.Views.LocationsPage"
              xmlns:controls="clr-namespace:MauiAppConApi.Controls"
+             x:Name="ThisPage"
              Title="Locations">
     <ScrollView>
         <Grid RowDefinitions="*, Auto, Auto">
@@ -15,11 +16,15 @@
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <controls:LongCardView 
+                               LocationId="{Binding Id}"
+                                
                                BorderColor="{StaticResource Rick}"
                                LocationTitle="{Binding Name}"
                                CardDescription="{Binding Type}"
                                LocationType="{Binding Dimension}"
                                IconImageSource="portal_to_location.png" 
+                               ImageTappedCommand="{Binding Source={x:Reference ThisPage}, 
+                                                    Path=BindingContext.GoToLocationDetailCommand}" 
                                        />
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>

@@ -55,6 +55,7 @@ public class RestService
             }
         }
     }
+
     public async Task<Character> GetCharacterById(int id)
     {
             using (client = new HttpClient())
@@ -68,7 +69,6 @@ public class RestService
                 {
                     response.EnsureSuccessStatusCode();
                     var body = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine(body);
 
                     Item = JsonSerializer.Deserialize<Character>(body, serializerOptions);
                     return Item;
@@ -124,29 +124,6 @@ public class RestService
         }
     }
 
-    public async Task<CharacterResults> GetCharactersAndInfo()
-    {
-
-        using (client = new HttpClient())
-        {
-            request = new HttpRequestMessage
-            {
-                Method = HttpMethod.Get,
-                RequestUri = new Uri("https://rickandmortyapi.com/api/character/?page=1"),
-            };
-            using (response = await client.SendAsync(request))
-            {
-                response.EnsureSuccessStatusCode();
-                var body = await response.Content.ReadAsStringAsync();
-
-                var characterResults = JsonSerializer.Deserialize<CharacterResults>(body, serializerOptions);
-
-                return characterResults;
-
-            }
-        }
-    }
-
     public async Task<List<LocationComplete>> GetLocations()
     {
 
@@ -180,7 +157,7 @@ public class RestService
             request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri("https://rickandmortyapi.com/api/location/{id}"),
+                RequestUri = new Uri($"https://rickandmortyapi.com/api/location/{id}"),
             };
             using (response = await client.SendAsync(request))
             {
@@ -195,31 +172,50 @@ public class RestService
         }
     }
 
-    public async Task<List<LocationComplete>> GoToLocationPage(Uri uri)
+
+    public async Task<CharacterResults> GetCharactersDead()
     {
+
         using (client = new HttpClient())
         {
             request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = uri,
+                RequestUri = new Uri($"https://rickandmortyapi.com/api/character?status=dead"),
             };
             using (response = await client.SendAsync(request))
             {
                 response.EnsureSuccessStatusCode();
                 var body = await response.Content.ReadAsStringAsync();
 
-                var locationResults = JsonSerializer.Deserialize<LocationResults>(body, serializerOptions);
+                var characterResults = JsonSerializer.Deserialize<CharacterResults>(body, serializerOptions);
 
-                LocationItems = locationResults.Results;
-
-                return LocationItems;
-
+                return characterResults;
             }
         }
     }
 
+    public async Task<CharacterResults> GetCharactersUnknown()
+    {
 
+        using (client = new HttpClient())
+        {
+            request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri($"https://rickandmortyapi.com/api/character?status=unknown"),
+            };
+            using (response = await client.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+                var body = await response.Content.ReadAsStringAsync();
+
+                var characterResults = JsonSerializer.Deserialize<CharacterResults>(body, serializerOptions);
+
+                return characterResults;
+            }
+        }
+    }
 
     public async Task<CharacterResults> GetCharactersPage(Uri uri)
     {
@@ -291,6 +287,8 @@ public class RestService
             }
         }
     }
+
+    
 
 
 }

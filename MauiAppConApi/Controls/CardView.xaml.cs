@@ -80,14 +80,27 @@ public partial class CardView : ContentView
     }
 
 
-    private void OnImageTapped(object sender, EventArgs e)
+
+    public static readonly BindableProperty CharacterIdProperty = 
+        BindableProperty.Create(nameof(CharacterId), typeof(int), typeof(CardView), 0);
+
+    public int CharacterId
     {
-        // Aquí puedes invocar un comando o un evento que esté vinculado a tu ViewModel
-        Trace.WriteLine("hola");
-        ImageTappedCommand?.Execute(null);
+        get => (int)GetValue(CharacterIdProperty);
+        set => SetValue(CharacterIdProperty, value);
     }
+
     public CardView()
     {
         InitializeComponent();
+
+        var tapGestureRecognizer = new TapGestureRecognizer();
+        tapGestureRecognizer.Tapped += (s, e) => {
+            if (ImageTappedCommand != null && ImageTappedCommand.CanExecute(CharacterId))
+            {
+                ImageTappedCommand.Execute(CharacterId);
+            }
+        };
+        Image.GestureRecognizers.Add(tapGestureRecognizer);
     }
 }

@@ -4,6 +4,7 @@
              x:Class="MauiAppConApi.Views.CharactersPage"
              xmlns:controls="clr-namespace:MauiAppConApi.Controls"
              xmlns:converters="clr-namespace:MauiAppConApi.Converters"
+             x:Name="ThisPage"
              Title="Characters">
 
     <ContentPage.Resources>
@@ -23,14 +24,17 @@
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <controls:CardView 
-                                   BorderColor="{Binding Status, Converter={StaticResource StatusToBorderColor}}"
+                                   CharacterId="{Binding Id}"
+                                   BorderColor="{Binding Status, 
+                                                Converter={StaticResource StatusToBorderColor}}"                
                                    CardTitle="{Binding Name}"
                                    Species="{Binding Species}"
                                    Status="{Binding Status}"
                                    CardDescription="{Binding Location.Name}"
                                    IconBackgroundColor="SlateGray"
                                    IconImageSource="{Binding Image}"
-                                   ImageTappedCommand="{Binding MyNavigationCommand}" 
+                                   ImageTappedCommand="{Binding Source={x:Reference ThisPage}, 
+                                                        Path=BindingContext.GoToCharacterDetailCommand}" 
                                            />
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
